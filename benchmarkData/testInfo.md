@@ -6,7 +6,19 @@ This test benchmark is an attempt to find some correlation between the SystemCor
 
 Motor
 
-Rev Color Sensor V3
+Rev Color Sensor V3 (code changes required)
+
+## Running the Test
+
+Plug in a motor to the port `0, 0` or change in code.
+
+Hit start and make sure it ends.
+
+It should print out a line to the console, copy that into the `/benchmarkData/systemcorePlace.csv`.
+
+Repeat until a good average can be achieved (5).
+
+Thanks! I will take the average later.
 
 ## Code
 
