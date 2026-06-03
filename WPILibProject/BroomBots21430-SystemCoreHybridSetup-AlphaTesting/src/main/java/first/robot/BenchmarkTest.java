@@ -4,14 +4,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.wpilib.driverstation.DefaultUserControls;
 import org.wpilib.hardware.expansionhub.ExpansionHubMotor;
+import org.wpilib.hardware.hal.CANBusMap;
 import org.wpilib.opmode.PeriodicOpMode;
 import org.wpilib.opmode.Teleop;
 import org.wpilib.util.Preferences;
 
+import com.revrobotics.spark.A301;
+
     
 @Teleop
 public class BenchmarkTest extends PeriodicOpMode{
+    private final Robot robot;
+    private final DefaultUserControls userControls;
+    public BenchmarkTest(Robot robot, DefaultUserControls userControls){
+        this.robot = robot;
+        this.userControls = userControls;
+    }
     public class Logger{
         String name = "SystemCore21430";
         public static HashMap<String, Object> data = new HashMap<String,Object>();     
@@ -51,12 +61,11 @@ public class BenchmarkTest extends PeriodicOpMode{
     FunctionTimer startTimer = new FunctionTimer("start");
 
 
-    public ExpansionHubMotor motor0;
+    
     // public I2C colorSensor;
 
     @Override
     public void start(){
-        motor0 = new ExpansionHubMotor(0, 0);// feel free to change this
         // colorSensor = new I2C(I2C.Port.PORT_0, 0);
         startTimer.log();
     }
@@ -64,11 +73,11 @@ public class BenchmarkTest extends PeriodicOpMode{
     @Override
     public void periodic(){
         FunctionTimer motorState = new FunctionTimer("switch_motor");
-        motor0.resetEncoder();
+        robot.motor0.setRelativeEncoderPosition(0);
         motorState.log();
         FunctionTimer setPower = new FunctionTimer("set");
-        motor0.setThrottle(1);
-        motor0.setThrottle(0);
+        robot.motor0.setThrottle(1);
+        robot.motor0.setThrottle(0);
         setPower.log();
         FunctionTimer doubleTimer = new FunctionTimer("doubles");
         int lot = 1000000;

@@ -20,10 +20,10 @@ public class DefaultTeleMode extends PeriodicOpMode {
 
   @Override
   public void periodic() {
-    robot.motor1.setTargetPosition(userControls.getGamepad(0).getLeftY() * 100);
-    robot.motor1.update();
+    // robot.motor1.setTargetPosition(userControls.getGamepad(0).getLeftY() * 100);
+    // robot.motor1.update();
 
-    robot.servo0.setPosition(userControls.getGamepad(0).getLeftTriggerAxis());
-    robot.servo1.setPosition(userControls.getGamepad(0).getRightTriggerAxis());
+    // robot.servo0.setPosition(userControls.getGamepad(0).getLeftTriggerAxis());
+    // robot.servo1.setPosition(userControls.getGamepad(0).getRightTriggerAxis());
   }
 }

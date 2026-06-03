@@ -9,6 +9,9 @@ import org.wpilib.driverstation.UserControlsInstance;
 import org.wpilib.framework.OpModeRobot;
 import org.wpilib.hardware.expansionhub.ExpansionHubMotor;
 import org.wpilib.hardware.expansionhub.ExpansionHubServo;
+import org.wpilib.hardware.hal.CANBusMap;
+
+import com.revrobotics.spark.A301;
 
 /**
  * This is a demo program showing the use of the Expansion Hub motors and servos. The motors and
@@ -16,11 +19,9 @@ import org.wpilib.hardware.expansionhub.ExpansionHubServo;
  */
 @UserControlsInstance(DefaultUserControls.class)
 public class Robot extends OpModeRobot {
-  public final controlledMotor motor1 = new controlledMotor(0, 0, 0.007,0,0);
-
-  public final ExpansionHubServo servo0 = new ExpansionHubServo(0, 0);
-  public final ExpansionHubServo servo1 = new ExpansionHubServo(0, 1);
-
+  public final A301 motor0;
   /** Called once at the beginning of the robot program. */
-  public Robot() {}
+  public Robot() {
+    motor0 = new A301(CANBusMap.CAN_D0);
+  }
 }
