@@ -4,14 +4,20 @@
 
 package first.robot;
 
+import java.util.logging.Logger;
+
 import org.wpilib.driverstation.DefaultUserControls;
 import org.wpilib.opmode.PeriodicOpMode;
 import org.wpilib.opmode.Teleop;
+import org.wpilib.smartdashboard.SmartDashboard;
+import org.wpilib.system.DataLogManager;
+import org.wpilib.datalog.*;
 
 @Teleop
 public class DefaultTeleMode extends PeriodicOpMode {
   private final Robot robot;
   private final DefaultUserControls userControls;
+  private DoubleLogEntry joyStickLog;
 
   public DefaultTeleMode(Robot robot, DefaultUserControls userControls) {
     this.robot = robot;
@@ -20,10 +26,12 @@ public class DefaultTeleMode extends PeriodicOpMode {
 
   @Override
   public void periodic() {
-    robot.motor1.setTargetPosition(userControls.getGamepad(0).getLeftY() * 100);
-    robot.motor1.update();
-
-    robot.servo0.setPosition(userControls.getGamepad(0).getLeftTriggerAxis());
-    robot.servo1.setPosition(userControls.getGamepad(0).getRightTriggerAxis());
-  }
+    if(userControls.getGamepad(0).getSouthFaceButton()){
+robot.motor2.setAbsolutePosition(userControls.getGamepad(0).getRightY(), true);
+    
+    }else{
+      robot.motor2.setThrottle(userControls.getGamepad(0).getLeftY());
+    }
+    SmartDashboard.putNumber("joystickValue", userControls.getGamepad(0).getLeftY());
+    }
 }
