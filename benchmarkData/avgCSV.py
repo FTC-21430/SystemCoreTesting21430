@@ -1,4 +1,4 @@
-with open("bench3_23_26.csv") as file:
+with open("systemcorePlace.csv") as file:
      lines = file.readlines()[1:]
      data = [0]*(len(lines[0].split(","))-1)
      print(lines)
@@ -11,7 +11,7 @@ with open("bench3_23_26.csv") as file:
 
          print(l)
          for i in range(len(l)):
-             if ("chub" in l[i]):
+             if ("chub" in l[i] or "sc" in l[i]):
                  continue
              data[i-1]+=int(l[i])
      for v in range(len(data)):
